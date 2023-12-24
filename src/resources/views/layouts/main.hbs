@@ -8,16 +8,18 @@
 <body>
 
     <div class = "app">
-            <header>
-                    <h1>HEARDER</h1>
-                </hearder>
-                 {{{body}}}
-             <div class="container">
+            {{!-- <header>
+                 <h1>HEARDER</h1>
+            </hearder> --}}
 
+                {{> header}}
+             <div class="container">
+                {{{body}}}
              </div>
-                  <footer>
+                {{> footer}}
+            {{!-- <footer>
               <h1>Footer</h1>
-                  </footer>
+            </footer> --}}
 
     </div>
 </body>

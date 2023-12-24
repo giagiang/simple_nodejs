@@ -9,8 +9,10 @@ const port = 3000;
 app.use(morgan('combined'));
 
 //Template engine
-app.engine('handlebars', handlebars.engine());
-app.set('view engine', 'handlebars')
+app.engine('hbs', handlebars.engine({
+  extname: '.hbs'
+}));
+app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'resources/views'));
 
 // console.log(__dirname)
