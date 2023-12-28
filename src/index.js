@@ -44,6 +44,9 @@ app.post("/search",(req,res)=>{
   console.log(req.body)
   res.send('')
 })
+app.post("/profile",(req,res)=>{
+  res.render('profile')
+})
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
 });
