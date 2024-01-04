@@ -1,4 +1,4 @@
-class NewsController {
+ class NewsController {
     //[Get], news
   index(req,res){
     res.render('news');
@@ -9,4 +9,6 @@ class NewsController {
     res.send("good morning, welcome to HoaHocTro")
   }
 }
-module.exports = new NewsController;
+const newsController = new NewsController;
+
+export { newsController }

@@ -1,5 +1,6 @@
-const newsRouter = require("./news");
-const siteRouter = require("./site")
+
+import newsRouter from "./news.js" 
+import siteRouter from "./site.js"
 function route(app) {
   app.use("/news", newsRouter);
 
@@ -19,4 +20,4 @@ function route(app) {
 //     res.render("profile");
 //   });
 }
-module.exports = route;
+export default route;

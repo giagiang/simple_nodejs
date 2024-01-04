@@ -1,11 +1,16 @@
-const path = require("path");
-const express = require("express");
-const morgan = require("morgan");
-const handlebars = require("express-handlebars");
+import * as path from 'path';
+import express from "express";
+import morgan  from 'morgan';
+import  handlebars from "express-handlebars";
+
+const __dirname = path.resolve();
+
+import route from "./routes/index.js"
+import db from './config/db/index.js'
+
 const app = express();
 const port = 3000;
-
-const route = require("./routes");
+db.connect();
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(

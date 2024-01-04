@@ -1,9 +1,13 @@
-const express = require('express');
+
+import express from 'express';
 const router = express.Router();
 
-const siteController = require('../app/controllers/SiteController');
+
+import siteController from '../app/controllers/SiteController.js';
 
 // newsController.index
 router.use('/search', siteController.search);
-router.use('/', siteController.home);
-module.exports = router;  
+// router.use('/create', siteController.create);
+
+router.use('/', siteController.index);
+export default router;  
