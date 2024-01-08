@@ -1,32 +1,25 @@
-import Course from "../models/Course.js"
+import Course from "../models/Course.js";
+
 class SiteController {
-  //[Get],
-  async index(req, res) {
+  // [Get],
+  index(req, res, next) {
+    Course.find({})
+      .lean()
 
-    // console.info("index running ")
-    // await Course.create({ name: 'small' });
-
-    Course.find({}).exec()
-      .then(function (courses) {
-        console.log("found courses", courses)
-        res.json(courses);
+      .then((courses) => {
+        res.render("home", { courses });
       })
-      .catch(function (err) {
-        console.log(err);
+      .catch((error) => {
+        next(error);
       });
-    // res.render("home");
-
   }
+  // home(req,res){
+  //   res.send("home");
+  // }
 
   //[Get], /search
   search(req, res) {
-    res.send("search");
+    res.render("search");
   }
-
-  // async create(req, res) {
-  //   await Course.create({ name: 'small', description: "okok" });
-
-  //   res.send("fdsafda")
-  // }
 }
 export default new SiteController();

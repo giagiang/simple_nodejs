@@ -7,3 +7,4 @@ router.get("/:slug", newsController.show);
 router.get("/", newsController.index);
 
 export default router;
+     
