@@ -1,12 +1,12 @@
-import * as path from 'path';
+import * as path from "path";
 import express from "express";
-import morgan  from 'morgan';
-import  handlebars from "express-handlebars";
+import morgan from "morgan";
+import handlebars from "express-handlebars";
 
 const __dirname = path.resolve();
 
-import route from "./routes/index.js"
-import db from './config/db/index.js'
+import route from "./routes/index.js";
+import db from "./config/db/index.js";
 
 const app = express();
 const port = 3000;
@@ -28,12 +28,13 @@ app.use(morgan("combined"));
 app.engine(
   "hbs",
   handlebars.engine({
-    extname: ".hbs",
+    extname: ".hbs"
   })
 );
 
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "resources", "views"));
+app.set("views", path.join(__dirname ,"src", "resources", "views"));
+
 
 //Route init
 route(app);
