@@ -1,13 +1,11 @@
-
-import express from 'express';
+import express from "express";
 const router = express.Router();
 
-
-import siteController from '../app/controllers/SiteController.js';
+import siteController from "../app/controllers/SiteController.js";
 
 // newsController.index
-router.use('/search', siteController.search);
+router.use("/search", siteController.search);
 // router.use('/create', siteController.create);
 
-router.use('/', siteController.index);
-export default router;  
+router.use("/", siteController.index);
+export default router;

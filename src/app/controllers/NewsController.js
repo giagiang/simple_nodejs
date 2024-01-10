@@ -12,3 +12,4 @@
 const newsController = new NewsController;
 
 export { newsController }
+// export default new NewsController();

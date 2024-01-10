@@ -2,33 +2,28 @@
   <div class="row">
 
     {{#each courses}}
-
       <div class="col-sm-6 col-lg-4">
         <div class="card card-course-item" style="width:18rem;">
-          <img class="card-img-top"  src="{{this.image}}" alt="{{this.image}}" />
+          <a href="/course/{{this.slug}}">
+            <img
+              class="card-img-top"
+              src="{{this.image}}"
+              alt="{{this.image}}"
+            />
+          </a>
           <div class="card-body">
-            <h5 class="card-title">
+            <a href="/course/{{this.slug}}">
+
+              <h5 class="card-title">
                 {{this.name}}
-                </h5>
+              </h5>
+            </a>
+
             <p class="card-text">{{this.description}}</p>
-            <a href="#" class="btn btn-primary">Learn</a>
+            <a href="#" class="btn btn-primary">View Course</a>
           </div>
         </div>
       </div>
-
-         <div class="col-sm-6 col-lg-4">
-        <div class="card card-course-item" style="width:18rem;">
-          <img class="card-img-top"  src="{{this.image}}" alt="{{this.image}}" />
-          <div class="card-body">
-            <h5 class="card-title">
-                {{this.name}}
-                </h5>
-            <p class="card-text">{{this.description}}</p>
-            <a href="#" class="btn btn-primary">Learn</a>
-          </div>
-        </div>
-      </div>
-
     {{/each}}
 
   </div>
