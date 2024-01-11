@@ -10,12 +10,26 @@ class CoursesController {
              res.render('courses/show',{course});
            })
            .catch(next)
-
-
-
-  
-
   }
+
+
+  //[GET] /courses/create
+  create(req, res, next) {
+      res.render('courses/create');
+    }
+
+  //[POST] /courses/store
+  store(req,res, next){
+    const formData = req.body;
+    formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/maxresdefault.jpg`
+     const course = new Course(formData);
+    course.save()
+        .then(() => res.redirect(`/courses/  `))
+        .catch(error => {
+
+        });
+  }
+
 }
 
 export default new CoursesController();
