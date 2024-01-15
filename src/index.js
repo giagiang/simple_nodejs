@@ -3,6 +3,8 @@ import express from "express";
 import morgan from "morgan";
 import handlebars from "express-handlebars";
 
+
+
 const __dirname = path.resolve();
 
 import route from "./routes/index.js";
@@ -12,7 +14,18 @@ const app = express();
 const port = 3000;
 db.connect();
 
-app.use(express.static(path.join(__dirname, "public")));
+console.log("dirname value:", __dirname)
+app.use(express.static(__dirname + '/resources'));
+app.use(express.static(path.join(__dirname ,'src','public')));
+ console.log(path.join(__dirname ,'public'));
+
+
+
+
+
+
+
+
 app.use(
   express.urlencoded({
     extended: true,
@@ -42,3 +55,5 @@ route(app);
 app.listen(port, () => {
   console.log(`App listening on port http://localhost:${port}`);
 });
+
+
