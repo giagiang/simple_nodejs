@@ -1,7 +1,7 @@
 import Course from "../models/Course.js";
 
 class MeController {
-  //[Get], /me
+  //[Get], /me/stored/courses
   storedCourses(req, res, next) {
     Course.find({})
       .lean()
