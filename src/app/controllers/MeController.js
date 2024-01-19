@@ -10,6 +10,14 @@ class MeController {
         }))
       .catch(next);
   }
+  trashCourses(req,res,next){
+    Course.find({})
+    .lean()
+    .then(courses => res.render("me/trash-courses",{
+       courses
+      }))
+    .catch(next);
+  }
 }
 export default new MeController();
     
