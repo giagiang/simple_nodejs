@@ -11,7 +11,7 @@ class MeController {
       .catch(next);
   }
   trashCourses(req,res,next){
-    Course.find({})
+    Course.findDeleted({})
     .lean()
     .then(courses => res.render("me/trash-courses",{
        courses

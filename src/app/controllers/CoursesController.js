@@ -17,7 +17,7 @@ class CoursesController {
     res.render("courses/create");
   }
 
-    //[POST] /courses/store
+  //[POST] /courses/store
 
   store(req, res, next) {
     const formData = req.body;
@@ -42,10 +42,17 @@ class CoursesController {
       .catch(next);
   }
   //[delete]/courses/:id
-  delete(req,res,next){
-    Course.delete({_id: req.params.id})
-    .then(()=>res.redirect("back"))
-    .catch(next);
+  delete(req, res, next) {
+    Course.delete({ _id: req.params.id })
+      .then(() => res.redirect("back"))
+      .catch(next);
+  }
+  //[PATCH]/course/:id/restore
+  restore(req, res, next) {
+    Course.restore({ _id: req.params.id })
+      .then(() => res.redirect("back"))
+      .catch(next);
+
 
   }
 }
