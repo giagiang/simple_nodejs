@@ -10,14 +10,15 @@ const Course = new Schema(
     image: { type: String },
     videoId: { type: String, required: true },
     level: { type: String },
-    slug: { type: String, slug: "name", unique: true },
+    deletedAt: { type: String },
+    // slug: { type: String, slug: "name", unique: true },
   },
   { timestamps: true }
 );
 
 //add plugin
 mongoose.plugin(slug);
-Course.plugin(mongooseDelete, { deletedAt: true,
-  overrideMethods: 'all', });
+//Course.plugin(mongooseDelete, { deletedAt: true, overrideMethods: "all" });
+Course.plugin(mongooseDelete);
 
 export default mongoose.model("Course", Course);
