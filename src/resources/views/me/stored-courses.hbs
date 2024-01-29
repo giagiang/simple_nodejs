@@ -1,4 +1,6 @@
-<form class="mt-4" name="container-form" method="POST" action="/courses/handle-form-actions">
+<form class="mt-4" name="container-form" method="POST"  action="/courses/handle-form-actions">
+
+{{!-- action="/me/stored/courses" --}}
     <div>
         <h3> My Courses</h3>
         {{#if deletedCount}}
@@ -113,17 +115,17 @@
             let isCheckedAll = courseItemCheckbox.length === $('input[name="courseIds[]"]:checked').length;
             checkboxAll.prop('checked', isCheckedAll);
             renderCheckAllSubmitBtn();
-        })
+        });
 
         // check all submit button clicked
-     
 
         checkAllSubmitBtn.on('submit', function (e) {
             let isSubmittable = !$(this).hasClass('disabled');
             if (!isSubmittable) {
                 e.preventDefault();
             }
-        })
+        });
+        
         // re-render check all submit button 
         function renderCheckAllSubmitBtn() {
             let checkCount = $('input[name="courseIds[]"]:checked').length;
