@@ -1,6 +1,6 @@
-<form class="mt-4" name="container-form" method="POST"  action="/courses/handle-form-actions">
+<form class="mt-4" name="container-form" method="POST" action="/courses/handle-form-actions">
 
-{{!-- action="/me/stored/courses" --}}
+    {{!-- action="/me/stored/courses" --}}
     <div>
         <h3> My Courses</h3>
         {{#if deletedCount}}
@@ -11,11 +11,11 @@
             <label class="form-check-label" for="checkbox-all">
                 Select All
             </label>
-            <select class="form-control form-control-sm checkbox-select-all-options" name="actions" required>
+            <select class="form-control form-control-sm checkbox-select-all-options" name="actions" required="required">
                 <option value="">-- Choose Action --</option>
                 <option value="delete">Delete</option>
             </select>
-            <button class="btn btn-primary btn-sm check-all-submit-btn disabled"> Apply </button>
+            <button class="btn btn-primary btn-sm check-all-submit-btn " disabled="disabled"> Apply </button>
         </div>
     </div>
     <table class="table mt-4">
@@ -87,10 +87,13 @@
         let courseId;
         let deleteForm = document.forms['btn-delete-form'];
         let btnDeleteCourse = document.getElementById('btn-delete-course');
-        let containerForm = document.forms['container-form'];
+        //let containerForm = document.forms['container-form'];
+        let containerForm = $('form[name = "container-form"]');
         let checkboxAll = $('#checkbox-all');
         let courseItemCheckbox = $('input[name="courseIds[]"]');
         let checkAllSubmitBtn = $('.check-all-submit-btn');
+
+        console.log(containerForm)
 
         // When dialog confirm clicked
         $('#delete-course-modal').on('show.bs.modal', function (event) {
@@ -119,21 +122,20 @@
 
         // check all submit button clicked
 
-        checkAllSubmitBtn.on('submit', function (e) {
-            let isSubmittable = !$(this).hasClass('disabled');
-            if (!isSubmittable) {
-                e.preventDefault();
-            }
-        });
-        
+        // containerForm.on('submit', function (e) {
+        //    let isSubmittable = !checkAllSubmitBtn.hasClass('disabled');
+        //  if (!isSubmittable) {
+        //    e.preventDefault();
+        // }
+        //});
+
         // re-render check all submit button 
         function renderCheckAllSubmitBtn() {
             let checkCount = $('input[name="courseIds[]"]:checked').length;
-
             if (checkCount > 0) {
-                checkAllSubmitBtn.removeClass('disabled');
+                checkAllSubmitBtn.attr('disabled',false);
             } else {
-                checkAllSubmitBtn.addClass('disabled');
+                checkAllSubmitBtn.attr('disabled',true);
             }
         }
 
