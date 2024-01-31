@@ -22,7 +22,9 @@
         <thead>
             <tr>
                 <th scope="col" colspan="2">#</th>
-                <th scope="col">Courses Name</th>
+                <th scope="col">Courses Name
+                        <span class="iconic iconic-elevator iconic-lg" title="elevator" aria-hidden="true"></span>
+                </th>
                 <th scope="col">Level</th>
                 <th scope="col" colspan="2">Training Time</th>
             </tr>
@@ -133,9 +135,9 @@
         function renderCheckAllSubmitBtn() {
             let checkCount = $('input[name="courseIds[]"]:checked').length;
             if (checkCount > 0) {
-                checkAllSubmitBtn.attr('disabled',false);
+                checkAllSubmitBtn.attr('disabled', false);
             } else {
-                checkAllSubmitBtn.attr('disabled',true);
+                checkAllSubmitBtn.attr('disabled', true);
             }
         }
 
