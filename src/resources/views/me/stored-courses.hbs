@@ -23,7 +23,9 @@
             <tr>
                 <th scope="col" colspan="2">#</th>
                 <th scope="col">Courses Name
-                        <span class="iconic iconic-elevator iconic-lg" title="elevator" aria-hidden="true"></span>
+                    <a href="?_sort&column=name&type=desc">
+                        <span class = "oi oi-elevator"></span>
+                    </a>
                 </th>
                 <th scope="col">Level</th>
                 <th scope="col" colspan="2">Training Time</th>
@@ -89,13 +91,13 @@
         let courseId;
         let deleteForm = document.forms['btn-delete-form'];
         let btnDeleteCourse = document.getElementById('btn-delete-course');
-        //let containerForm = document.forms['container-form'];
+     //   let containerForm = document.forms['container-form'];
         let containerForm = $('form[name = "container-form"]');
         let checkboxAll = $('#checkbox-all');
         let courseItemCheckbox = $('input[name="courseIds[]"]');
         let checkAllSubmitBtn = $('.check-all-submit-btn');
 
-        console.log(containerForm)
+        //console.log(containerForm)
 
         // When dialog confirm clicked
         $('#delete-course-modal').on('show.bs.modal', function (event) {
@@ -124,11 +126,11 @@
 
         // check all submit button clicked
 
-        // containerForm.on('submit', function (e) {
-        //    let isSubmittable = !checkAllSubmitBtn.hasClass('disabled');
-        //  if (!isSubmittable) {
-        //    e.preventDefault();
-        // }
+        //containerForm.on('submit', function (e) {
+           // let isSubmittable = !checkAllSubmitBtn.hasClass('disabled');
+          //if (!isSubmittable) {
+         //   e.preventDefault();
+         //}
         //});
 
         // re-render check all submit button 

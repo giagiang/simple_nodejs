@@ -6,6 +6,7 @@ import handlebars from "express-handlebars";
 
 const __dirname = path.resolve();
 
+import SortMiddleware from "./app/middlewares/SortMiddleware.js";
 import route from "./routes/index.js";
 import db from "./config/db/index.js";
 
@@ -26,6 +27,8 @@ app.use(
 app.use(express.json());
 app.use(methodOverride('_method'))
 
+//custom middleware
+app.use(SortMiddleware);
 
 // HTTP logger
 app.use(morgan("combined"));
