@@ -18,17 +18,24 @@
             <button class="btn btn-primary btn-sm check-all-submit-btn " disabled="disabled"> Apply </button>
         </div>
     </div>
+
+    {{!-- {{_sort.type}} --}}
+
+
+
     <table class="table mt-4">
         <thead>
             <tr>
                 <th scope="col" colspan="2">#</th>
                 <th scope="col">Courses Name
-                    <a href="?_sort&column=name&type=desc">
-                        <span class = "oi oi-elevator"></span>
-                    </a>
+                    {{{sortable 'name' _sort}}}
                 </th>
-                <th scope="col">Level</th>
-                <th scope="col" colspan="2">Training Time</th>
+                <th scope="col">Level
+                    {{{sortable 'level' _sort}}}
+                </th>
+                <th scope="col" colspan="2">Training Time
+                    {{{sortable 'createAt' _sort}}}
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -91,7 +98,7 @@
         let courseId;
         let deleteForm = document.forms['btn-delete-form'];
         let btnDeleteCourse = document.getElementById('btn-delete-course');
-     //   let containerForm = document.forms['container-form'];
+        //   let containerForm = document.forms['container-form'];
         let containerForm = $('form[name = "container-form"]');
         let checkboxAll = $('#checkbox-all');
         let courseItemCheckbox = $('input[name="courseIds[]"]');
@@ -127,10 +134,10 @@
         // check all submit button clicked
 
         //containerForm.on('submit', function (e) {
-           // let isSubmittable = !checkAllSubmitBtn.hasClass('disabled');
-          //if (!isSubmittable) {
-         //   e.preventDefault();
-         //}
+        // let isSubmittable = !checkAllSubmitBtn.hasClass('disabled');
+        //if (!isSubmittable) {
+        //   e.preventDefault();
+        //}
         //});
 
         // re-render check all submit button 

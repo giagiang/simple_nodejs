@@ -4,14 +4,14 @@ class MeController {
   //[Get], /me/stored/courses
   storedCourses(req, res, next) {
     // let courseQuery= Course.find({ deletedAt: { $exists: false } }).lean();
-
+    // res.json(res.locals._sort);
     let courseQuery = Course.find({}).lean();
     
-    // if (req.query.hasOwnProperty("_sort")) {
-    //     courseQuery = courseQuery.sort({
-    //       [req.query.column]: req.query.type
-    //     });
-    // }
+    if (req.query.hasOwnProperty("_sort")) {
+        courseQuery = courseQuery.sort({
+          [req.query.column]: req.query.type
+        });
+    }
 
     Promise.all([courseQuery,
 
