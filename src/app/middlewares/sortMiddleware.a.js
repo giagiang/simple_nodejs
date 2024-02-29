@@ -1,5 +1,5 @@
 
-export default function SortMiddleware(req, res, next) {
+export default function sortMiddleware(req, res, next) {
     res.locals._sort = {
         enabled: false,
         type: 'default',
