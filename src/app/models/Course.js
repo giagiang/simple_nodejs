@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 import slug from "mongoose-slug-generator";
 import mongooseDelete from "mongoose-delete";
 
-const Course = new Schema(
+const CourseSchema = new Schema(
   {
     name: { type: String, required: true },
     description: { type: String },
@@ -16,9 +16,20 @@ const Course = new Schema(
   { timestamps: true }
 );
 
+//custom query helpers 
+CourseSchema.query.sortable = function(req){
+   
+  if (req.query.hasOwnProperty("_sort")) {
+    const isValidType = ['asc', 'desc'].includes(req.query.type);
+    return this.sort({
+    [req.query.column]: isValidType ? req.query.type : 'desc',
+    });
+}
+ }
+
 //add plugin
 mongoose.plugin(slug);
 //Course.plugin(mongooseDelete, { deletedAt: true, overrideMethods: "all" });
-Course.plugin(mongooseDelete);
+CourseSchema.plugin(mongooseDelete);
 
-export default mongoose.model("Course", Course);
+export default mongoose.model("Course", CourseSchema);

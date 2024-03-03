@@ -3,15 +3,8 @@ import Course from "../models/Course.js";
 class MeController {
   //[Get], /me/stored/courses
   storedCourses(req, res, next) {
-    // let courseQuery= Course.find({ deletedAt: { $exists: false } }).lean();
-    // res.json(res.locals._sort);
     let courseQuery = Course.find({}).lean();
-    
-    if (req.query.hasOwnProperty("_sort")) {
-        courseQuery = courseQuery.sort({
-          [req.query.column]: req.query.type
-        });
-    }
+
 
     Promise.all([courseQuery,
 
@@ -19,7 +12,7 @@ class MeController {
     ])
       .then(([courses, deletedCount]) =>
         res.render("me/stored-courses", {
-          deletedCount,
+          deletedCount,  
           courses,
         })
       )
