@@ -89,7 +89,8 @@
           e.preventDefault();
           
           var courseId = $(this).data('id');
-          restoreForm.action = '/courses/' + courseId + '/restore?_method=PATCH';
+          {{!-- restoreForm.action = '/courses/' + courseId + '/restore?_method=PATCH'; --}}
+          restoreForm.action =  '/courses/' + courseId + '/restore';
           restoreForm.submit();
         });
     });

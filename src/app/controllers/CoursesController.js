@@ -40,18 +40,33 @@ class CoursesController {
       .then(() => res.redirect("/me/stored/courses"))
       .catch(next);
   }
+
+  // soft delete: means that we marking course document with deletedAt: time
   //[delete]/courses/:id
   delete(req, res, next) {
-    Course.delete({ _id: req.params.id })
-      .then(() => res.redirect("back"))
+    const now = new Date();
+    Course.findOneAndUpdate({ _id: req.params.id }, { deletedAt: now })
+      .then(() => {
+        // console.log("update deteed")
+        res.redirect("back");
+      })
       .catch(next);
   }
-  //[PATCH]/course/:id/restore
-  restore(req, res, next) {
-    Course.restore({ _id: req.params.id })
-      .then(() => res.redirect("back"))
-      .catch(next);
+  // [PATCH]/course/:id/restore
+  async restore(req, res, next) {
+    // 1. find document
+    let restoringCourse = await Course.findOne({ _id: req.params.id });
+    // 2. remove attribute
+    restoringCourse.deletedAt = undefined;
+    // 2.1 try to update another attribute
+    //restoringCourse.level = "testignig";
+    // 3. save
+    await restoringCourse.save();
+    // 4. redirect back to previous page
+
+    res.redirect("back");
   }
+
   //[DELETE]/course/:id/force
   forceDelete(req, res, next) {
     Course.deleteOne({ _id: req.params.id })
@@ -60,9 +75,9 @@ class CoursesController {
   }
   //[POST]/COURSE/handle-form-actions
   handleFormActions(req, res, next) {
-    switch(req.body.actions) {
-      case "delete":  
-        Course.delete({ _id: {$in: req.body.courseIds } })
+    switch (req.body.actions) {
+      case "delete":
+        Course.delete({ _id: { $in: req.body.courseIds } })
           .then(() => res.redirect("back"))
           .catch(next);
         break;

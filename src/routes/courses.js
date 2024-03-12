@@ -9,8 +9,11 @@ router.post('/store',courseController.store);
 router.get("/:id/edit", courseController.edit);
 router.post("/handle-form-actions", courseController.handleFormActions,);
 router.put("/:id", courseController.update);
-router.patch('/:id/restore', courseController.restore);
-router.delete("/:id", courseController.delete);
+router.post('/:id/restore', courseController.restore);
+// /courses/65efd0a26767c6171a74773e/restore  
+
+router.post("/:id", courseController.delete);
+// /courses/65efd0a26767c6171a74773e
 router.delete("/:id/force", courseController.forceDelete);
 
 
