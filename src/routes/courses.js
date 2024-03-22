@@ -14,7 +14,7 @@ router.post('/:id/restore', courseController.restore);
 router.post("/:id", courseController.delete);
 // /courses/65efd0a26767c6171a74773e
 router.delete("/:id/force", courseController.forceDelete);
-router.get("/:slug", courseController.show);
+router.get("/:id", courseController.show);
 
 export default router;
      
