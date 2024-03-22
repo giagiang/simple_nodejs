@@ -75,16 +75,25 @@ class CoursesController {
   }
   //[POST]/COURSE/handle-form-actions
   handleFormActions(req, res, next) {
+    const now = new Date();
     switch (req.body.actions) {
       case "delete":
-        Course.delete({ _id: { $in: req.body.courseIds } })
+        // { "city_id": { "$in": idList } }
+        // Course.updateMany({ "_id": { "$in": req.body.courseIds } }, )
+        Course.updateMany(
+          { "_id": { "$in": req.body.courseIds } },
+          { $set: { isDeleted: true, deletedAt: now } },
+        )
           .then(() => res.redirect("back"))
           .catch(next);
         break;
       default:
+        console.log('Invalid action:', req.body.actions); // Thông báo nếu hành động không hợp lệ
+
         res.json({ message: "action is invalid" });
     }
   }
 }
+
 
 export default new CoursesController();

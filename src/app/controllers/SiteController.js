@@ -3,7 +3,7 @@ import Course from "../models/Course.js";
 class SiteController {
   // [Get],
   index(req, res, next) {
-    Course.find({})
+    Course.find({deletedAt:{$exists:false}})
       .lean()
       .then((courses) => {
         res.render("home", { courses });

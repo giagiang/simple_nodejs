@@ -37,7 +37,7 @@ class MeController {
   trashCourses(req, res, next) {
     Course.find({ deletedAt: { $exists: true } })
       .lean()
-      .then((courses) => {  
+      .then((courses) => {
         console.info("courses has deleted attribute:", courses);
         // console.log("Number of deleted courses:", courses.length); // Log the count
 
