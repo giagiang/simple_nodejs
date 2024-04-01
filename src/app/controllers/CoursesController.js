@@ -4,29 +4,32 @@ class CoursesController {
   // [GET] /courses/:slug
 
   show(req, res, next) {
-    Course.findOne({ _id: req.params.id })
-      .lean()
+    Course.findOne( {_id: req.params.id })
+    .lean()
       .then((course) => {
         res.render("courses/show", { course });
       })
       .catch(next);
   }
 
+  
   //[GET] /courses/create
   create(req, res, next) {
     res.render("courses/create");
   }
 
-  //[POST] /courses/store
-
+  // [POST] /courses/store
   store(req, res, next) {
     req.body.image = `https://i.ytimg.com/vi/${req.body.videoId}/maxresdefault.jpg`;
     const course = new Course(req.body);
+    // course.deletedAt = null; 
     course
       .save()
-      .then(() => res.redirect("/me/stored/courses  "))
-      .catch((error) => {});
+      .then(() => res.redirect("/me/stored/courses"))
+      .catch(next);
   }
+
+
   //[GET]/COURSES/:id/:edit
   edit(req, res, next) {
     Course.findById(req.params.id)
@@ -45,8 +48,8 @@ class CoursesController {
   //[delete]/courses/:id
   delete(req, res, next) {
     const now = new Date();
-    Course.findOneAndUpdate({ _id: req.params.id }, { deletedAt: now })
-      .then(() => {
+    Course.findOneAndUpdate({ _id: req.params.id}, { deletedAt: now })
+    .then(() => {
         // console.log("update deteed")
         res.redirect("back");
       })

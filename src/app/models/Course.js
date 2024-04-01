@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
-import slug from "mongoose-slug-generator";
+// import slug from "mongoose-slug-generator";
 
 const Course = new Schema(
   {
@@ -9,7 +9,7 @@ const Course = new Schema(
     image: { type: String },
     videoId: { type: String, required: true },
     level: { type: String },
-    deletedAt: { type: String, default: null },
+    deletedAt: { type: String, default: undefined },
     // slug: { type: String, slug: "name", unique: true },
   },
   { timestamps: true }
